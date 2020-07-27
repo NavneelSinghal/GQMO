@@ -1,0 +1,68 @@
+\section{Problem 3}
+\subsection{Problem}
+We call a set of integers \textit{special} if it has 4 elements and can be partitioned into 2 disjoint subsets $\{a,b\}$ and $\{c,d\}$ such that $ab-cd=1$. For every positive integer $n$, prove that the set $\{1,2, \ldots , 4n\}$ cannot be partitioned into $n$ disjoint special sets.\nl
+\textit{Proposed by Mohsen Jamali, Iran}
+
+\subsection{Solutions}
+We assume, for the sake of contradiction, that we can partition the set $\{1,2,\hdots , 4n\}$ into $n$ disjoint special sets $S_1, S_2,\hdots , S_n$. Every special set contains at most 2 even integers since it can be partitioned so that $ab-cd=1$. But there're exactly $2n$ even and $2n$ odd numbers, thus each $S_i$ must contain exactly 2 even and 2 odd integers, and the numbers with same parity are paired to each other. Let's call $S_i=\{a_i, b_i, c_i, d_i\}$ with $a_i,b_i$ even, $c_i,d_i$ odd, and $a_ib_i-c_id_i=\pm 1$.
+\nl Note that  $\displaystyle{\bigcup_{i=1}^n\ \{a_i,b_i\}=\{2,4,\hdots , 4n\}}$ and  $\displaystyle{\bigcup_{i=1}^n\ \{c_i,d_i\}=\{1,3,\hdots , 4n-1\}}$.
+\nl Next, we provide two different solutions that lead to the contradiction of our assumption.
+
+\subsubsection{Solution 1 (Morteza Saghafian)}
+Observe that $a_ib_i=c_id_i\pm 1\leq c_id_i+1<(c_i+1)(d_i+1)$. Multiplying these equations for $i=1,2,\hdots , n$ yields
+\begin{align*}
+    2\cdot4\cdot \hdots \cdot 4n &= \prod_{i=1}^n\ a_ib_i \\
+    &< \prod_{i=1}^n\ (c_i+1)(d_i+1) \\
+    &= 2\cdot 4 \cdot \hdots \cdot 4n,
+\end{align*} which is impossible. This contradiction completes the proof.
+
+\subsubsection{Solution 2 (Natanon Therdpraisan)}
+Observe that $a_ib_i=c_id_i\pm 1\leq c_id_i+1$. Multiplying all equations gives $$2\cdot 4\cdot \hdots \cdot 4n=\prod_{i=1}^n\ a_ib_i\leq \prod_{i=1}^n\ (c_id_i+1).$$
+Consider any positive real numbers $x_1<x_2<x_3<x_4$. By rearrangement inequality, we know that $$(x_{j_1}x_{j_2}+1)(x_{j_3}x_{j_4}+1)\leq (x_1x_2+1)(x_3x_4+1)$$ for any permutation $(j_1,j_2,j_3,j_4)$ of $(1,2,3,4)$.
+\nl Hence, 
+\begin{align*}
+    \prod_{i=1}^n\ (c_id_i+1)&\leq \prod_{t=1}^n\ ((4t-3)(4t-1)+1) \\
+    &< \prod_{t=1}^n\ (4t-2)(4t) \\
+    &= 2\cdot 4 \cdot \hdots \cdot 4n,
+\end{align*} which is clearly a contradiction and the proof completes.
+
+\subsubsection{Remark}
+The above solutions all approach by putting $\pm 1$ on the odd side, multiplying all equations together, and then comparing the product of all even pairs and the product of all odd pairs (with $\pm1$ added to each pair). However, the solution can still be done similarly if $\pm 1$ is put on the even side, i.e. 
+\nl for solution 1, we use $c_id_i=a_ib_i\pm 1\geq a_ib_i-1>(a_i-1)(b_i-1)$ ;
+\nl for solution 2, rearrangement inequality implies $(x_{j_1}x_{j_2}-1)(x_{j_3}x_{j_4}-1)\geq (x_1x_2-1)(x_3x_4-1)$, and thus $$\prod_{i=1}^n\ (a_ib_i\pm 1)\geq \prod_{t=1}^n\ ((4t-2)(4t)-1)>\prod_{t=1}^n\ (4t-3)(4t-1).$$
+\nl Therefore, the marking scheme below should also apply equivalently if such approach happens.
+
+
+
+\subsection{Marking scheme}
+To our knowledge, we don’t know any substantially different approach to this problem. If such approach happens, it should be judged as equivalently as possible. The marking scheme is divided into two additive parts. However, partial credits within each part are \textbf{not} additive.
+
+\begin{enumerate}
+        \marking{0}{Examples of non-rewarding observations:}
+        \begin{enumerate}
+            \item Casework specific value(s) of $n$ that does not give insight to general case
+            \item Show that each special set has exactly one way of partition, e.g. if $ab-cd=1$ then $|ac-bd|,|ad-bc|\neq 1$
+            \item Show that $gcd\ (a,c)=1$ etc.
+        \end{enumerate}
+        \marking{2}{Showing that each special subset contains exactly 2 even and 2 odd integers, and numbers with same parity are paired to each other}
+        \begin{enumerate}
+                \marking{1}{Prove that each special subset contains at most 2 even numbers}
+                \marking{1}{Prove that each special subset contains at least 2 odd numbers}
+                \marking{1}{Prove that each special subset contains exactly 2 even and 2 odd numbers}
+        \end{enumerate}
+        \marking{5}{Completing the solution}
+        \begin{enumerate}
+                \marking{2}{Attempt to contradict the assumption by comparing the sizes of the product of all even pairs and that of all odd pairs, e.g. multiplying all $n$ equations, or claiming that the product of all even pairs is still strictly more than the product of all odd pairs after plus 1 to each pair}
+                \marking{2}{Show or mention (since it's easy to prove) that $xy\pm 1<(x+1)(y+1)$ for any $x,y>0$}
+                \marking{2}{Prove that the product of all odd pairs with 1 added to each pair maximizes when the numbers with more values are paired to each other}
+                \marking{1}{Claim (c), without justification}
+                \marking{0}{Show or mention that $xy\pm 1\leq xy+1$ for any real number $x,y$}
+        \end{enumerate}
+\end{enumerate}
+The correct solutions should be judged as 7 even if they're different from the above solutions. However, the following deductions could be applied:
+\begin{enumerate}\setcounter{enumi}{3}
+        \marking{-1}{The contestant has proven that each special subset contains 2 even and 2 odd integers, but use the fact that in each special subset each number must be paired only with one of same parity without mentioning}
+        \marking{-1}{The contestant has any other non-trivial minor error}
+\end{enumerate}
+
+

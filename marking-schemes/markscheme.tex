@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[top=3cm,bottom=3cm,left=2cm,right=2cm]{geometry}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{ifthen,tabto}
+\usepackage{tkz-euclide}
+\usepackage{contour}
+\usepackage{anyfontsize}
+\usepackage{fancyhdr}
+
+\newcommand{\sectionbreak}{\clearpage}
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=violet,
+    linkcolor=violet,
+    urlcolor=black
+}
+\newcommand{\nl}{\medskip\\ }
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+\newcommand{\marking}[2]{\item #2 \dotfill\textbf{\ifthenelse{\equal{#1}{1}}{(1 point)}{(#1 points)}}}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}{Remark}
+
+\title{}
+\author{}
+\date{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\thepage}
+
+\begin{document}
+\thispagestyle{empty}
+\allowdisplaybreaks
+\begin{center}
+\phantom{}\\
+\vspace{50pt}
+\input{_LOGO.pdf_tex}
+\end{center}
+\begin{center}
+\vspace{40 pt}
+\hrule height 1mm 
+\vspace{25 pt}
+\fontsize{40}{28}\selectfont
+\textbf{\textsf{GQMO Advanced Exam\\\vspace{3pt} \,\,\,\,\,\,Marking Scheme}}\newline
+\vspace{5 pt}
+\hrule height 1mm 
+\vspace{30pt}
+\fontsize{26}{28}\selectfont
+\textsc{GQMO PSC}
+\end{center}
+\tableofcontents 
+
+\setcounter{section}{-1}
+\input{Problems.tex}
+\pagebreak
+\input{P1.tex} %not final - need to add diagram and markscheme for solution 10
+\pagebreak
+\input{P2.tex}
+\pagebreak
+\input{P3.tex}
+\pagebreak
+\input{P4.tex}
+\pagebreak
+\input{P5.tex}
+\pagebreak
+\input{P6.tex}
+\pagebreak
+\input{P7.tex} %not final - need to add the whole thing, and it should be in the right format
+\pagebreak
+\input{P8.tex}
+
+\end{document}

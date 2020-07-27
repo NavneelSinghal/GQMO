@@ -1,0 +1,146 @@
+\section{Problem 4}
+\subsection{Problem}
+Prove that for all sufficiently large integers $n$, there exist $n$ numbers $a_1,a_2,\ldots,a_n$ satisfying the following three conditions:
+\begin{enumerate}
+    \item Each number $a_i$ is equal to either $-1$, $0$ or $1$.
+    \item At least $2n/5$ of the numbers  $a_1,a_2,\ldots, a_n$ are non-zero.
+    \item $a_1/1+a_2/2+\ldots+a_n/n=0$.
+\end{enumerate}
+\textit{Proposed by Navneel Singhal, India, Kyle Hess, USA, and Vincent Jugé, France}
+
+\subsection{Solutions}
+
+\subsubsection{Solution 1 (Vincent Jugé)}
+
+Let us say that a set $S \subseteq \{1,2,\ldots,n\}$ is $\emph{nice}$ if there exists a function $f : S \mapsto \{-1,1\}$ such that $\sum_{k \in S} f(k) / k = 0$; we say that $f$ is a $\emph{witness}$ for $S$.\nl
+Thus, we prove below that, if $n$ is large enough, there exists a nice set of size at least $2n/5$. Note a disjoint union of two nice sets is nice. Hence, the first goal would be to identify many disjoint nice sets.
+Aiming towards this goal, and due to the identity
+\[1 - 1/2 - 1/3 - 1/6 = 0,\]we first see that each set $S_k = \{k,2k,3k,6k\}$, where $k \leq n/6$, is a nice set. However, we wish to have disjoint sets only, and therefore we will not consider all these sets at once.
+\nl
+Instead, let us check whether some integer $m$ can belong to two such sets $S_k$ and $S_\ell$, with $n/12 < k < \ell \leq n/6$.
+Since\[n/12 < k < \ell \leq n/6 < 2k < \min\{3k,2\ell\} \leq \max\{3k,2\ell\} < 3\ell \leq n/2 < 6 k < 6 \ell,\]it follows that $m = 3 k = 2 \ell$.
+\nl
+This further implies that $k$ is even, with $n/2 < k = 2 \ell / 3 \leq n/9$, and that $\ell$ is divisible by $3$, with $n/8 < 3 k / 2 = \ell < n/6$.
+\nl
+Consequently, we can partition the set $\{k \in \mathbb{N} \colon n/12 < k \leq n/6\}$ into three subsets
+\begin{align*}
+    A & = \{k \in \mathbb{N} \colon n / 12 < k \leq n/9 \text{ and }
+    k \equiv 0 \hspace{-2mm}\pmod{2}\} \text{,} \\
+    B & = \{k \in \mathbb{N} \colon n / 8 < k \leq n/6 \text{ and }
+    k \equiv 0 \hspace{-2mm}\pmod{3}\} =
+    \{3 k / 2 \colon k \in A\}  \text{ and} \\
+    C & = \{k \in \mathbb{N} \colon n / 12 < k \leq n/6\} \setminus (A \cup B) \text{,}
+\end{align*}
+such that both families $(S_k)_{k \in A \cup C}$ and $(S_k)_{k \in B \cup C}$ are families of pairwise disjoint nice sets. However, we cannot use simultaneously sets $S_k$ and $S_\ell$ when $k \in A$ and $\ell \in B$.
+\nl
+Hence, we modify these sets as follows. Given some integer $k \in A$, let $\ell = 3k / 2 \in B$. Due to the identity
+\begin{align*}
+    0 & = (1-1/2-1/3-1/6)/2 - (1-1/2-1/3-1/6)/3 - (1/6 - 2/12) \\
+    & = 1/2 - 1/3 - 1/4 - 1/6 + 1/9 + 1/12 + 1/18,
+\end{align*}and although the intersection $S_k \cap S_\ell$ is non-empty, the set $S_k \cup S_\ell$ is still nice. Consequently, the sets $(S_k)_{k \in C} \cup (S_k \cup S_{3k/2})_{k \in A}$ form a family of pairwise disjoint nice sets. In particular, their union $\mathcal{S} = \bigcup_{n/12 < k \leq n/6} S_k$
+is also nice, and its cardinality is $|\mathcal{S}| = 7 |A| + 4 |C| = 23n/ 72 - \mathcal{O}(1)$.
+\nl
+Finally, let $\mathcal{T}$ be a maximal nice set (for the inclusion) containing $\mathcal{S}$. Assume that some integer $k \leq n/12$ does $\emph{not}$ belong to $\mathcal{T}$. Let $\ell$ be the largest such integer, and let $f : \mathcal{T} \mapsto \{-1,1\}$ be a witness for $\mathcal{T}$. By maximality of $\ell$, we know that $2 \ell \in \mathcal{T}$. Then, let $\mathcal{T}' = \mathcal{T} \cup \{\ell\}$, and let $f' : \mathcal{T}' \mapsto \{-1,1\}$ be defined by $f'(\ell) = f(2\ell)$, $f'(2\ell) = -f(2\ell)$, and $f'(k) = f(k)$ otherwise. One checks easily that $f'$ is a witness for $\mathcal{T}'$, contradicting the maximality of $\mathcal{T}$.
+\nl
+We conclude that each integer $k \leq n/12$ also belongs to $\mathcal{T}$, and thus that $\mathcal{T}$ is a nice set of size $|\mathcal{T}| \geq |\mathcal{S}| + n / 12 + \mathcal{O}(1) = 29n/ 72 - \mathcal{O}(1)$. Since $29 / 72 > 2/5$, this completes the proof.
+
+\subsubsection{Solution 2 (Navneel Singhal)}
+We give an explicit construction of a nice tuple with $\frac 25$ replaced by $\frac13 - \varepsilon$, showing that the number of non-zero elements in such an $n-$tuple can be made $\frac{n}{3} - \mathcal{O}(\log^2 n)$.
+Let $r = \left\lfloor \frac{N}{6}\right\rfloor$. Let $v_p(n)$ be the highest $e$ such that $p^e | n$ for a prime $p$. Let
+$$
+a_k = 
+\begin{cases}
+    1 & \text{if } v_2(k) \text{ and } v_3(k) \text{ are both even with } k \le r\\
+    -1 & \text{if } v_2(k) \text{ is odd and } v_3(k) \text{ is even with } k \le 2r\\
+    -1 & \text{if } v_2(k) \text{ is even and } v_3(k) \text{ is odd with } k \le 3r\\
+    -1 & \text{if } v_2(k) \text{ and } v_3(k) \text{ are both odd with } k \le 6r\\
+    0 & \text{otherwise}
+\end{cases}
+$$
+Firstly we show that this construction works.
+Consider the identity $1 - \frac12 - \frac13 - \frac16 = 0$. Consider integers $m$ not exceeding $r$, of the form $2^{2x}3^{2y}a$, where $\gcd(a, 6) = 1$. Suppose the set of such $m$ is $\mathbb{M}$.
+We claim that the set of terms of the sum $\sum_{k=1}^n \frac{a_k}{k}$ can be decomposed into $4-$tuples of pairs which are of the form $\left(\frac{1}{m}, -\frac{1}{2m}, -\frac{1}{3m}, -\frac{1}{6m} \right)$ where $m$ is of the aforementioned form, and this will show that $(a_1, \cdots, a_n)$ is indeed a nice tuple, because the sum of the elements in this tuple is $0$, and summing this over all possible $m$ of the aforementioned form and rearranging the terms we get our old summation.
+\nl
+Suppose $\mathbb{S}$ is the set $\mathbb{M} \cup 2\mathbb{M} \cup 3\mathbb{M} \cup 6\mathbb{M}$.
+Note that all the sets $2^a3^b \mathbb{M}$, $a, b \in \{0, 1\}$ are disjoint because by construction of the set $\mathbb{M}$, $2^a3^b \mathbb{M}$ is precisely the set of positive integers $z$ such that $v_2(z) \equiv a \pmod 2$ and $v_3(z) \equiv b \pmod 2$ with $z \le 2^a3^b r$.
+Thus, $\mathbb{S}$ is the set of all $k$ such that $a_k$ is non zero in our construction.
+However this is also the set of all elements representable in the form $2^a 3^b m$ where $m$ is in $\mathbb{M}$ and $a, b \in \{0, 1\}$.
+Thus the set of absolute values of the non-zero $a_k$'s is precisely the union of sets $\left\{\frac{1}{m}, \frac{1}{2m}, \frac{1}{3m}, \frac{1}{6m} \right\}$.\nl
+Now note that the sign of $a_k$ is $-1$ if any of $v_2(k)$ or $v_3(k)$ is odd and $+1$ otherwise.
+The sign of any element $\frac{1}{w}$ in $\left(\frac{1}{m}, -\frac{1}{2m}, -\frac{1}{3m}, -\frac{1}{6m} \right)$ is $-1$ if any of $v_2(w)$ or $v_3(w)$ is odd and $+1$ otherwise. This implies that the set of the non-zero $a_k$'s is precisely the union of the disjoint sets $\left\{\frac{1}{m}, -\frac{1}{2m}, -\frac{1}{3m}, -\frac{1}{6m} \right\}$, and thus we have shown that our construction satisfies the given conditions.
+\nl
+Clearly, the value of our constructed tuple is $4$ times the number of elements in $\mathbb{M}$. We proceed to count the number of elements in $\mathbb{M}$.\nl
+For every pair $(x, y)$, the number of integers $w$ which have $v_2(w) = 2x$ and $v_3(w) = 2y$ is $\left\lfloor \frac{1}{3} \cdot \frac{r}{2^{2x}3^{2y}} \right\rfloor \ge \frac{1}{3} \cdot \frac{r}{2^{2x}3^{2y}} - 1$. We sum this over all $(x, y)$ such that $\frac{r}{2^{2x}3^{2y}} \ge 1$ and get a lower bound on the number of terms. Suppose $s$ is the number of solutions to $\frac{r}{2^{2x}3^{2y}} \ge 1$. Then we have
+\begin{align*}
+    |\mathbb{M}| & \ge \sum_{\frac{r}{2^{2x}3^{2y}} \ge 1}  \left( \frac{1}{3} \cdot \frac{r}{2^{2x}3^{2y}} - 1 \right)\\
+    & = \frac{r}{3} \cdot \left( \sum_{\frac{r}{2^{2x}3^{2y}} \ge 1} \frac{1}{2^{2x}3^{2y}} \right) - s\\
+    & = \frac{r}{3} \cdot \left( \sum_{y = 0}^{\left\lfloor\frac{\log_3 r}{2}\right\rfloor} \frac{1}{3^{2y}} \cdot \left( \sum_{x = 0}^{\left\lfloor\frac{\log_2 \frac{r}{3^{2y}}}{2}\right\rfloor} \frac{1}{2^{2x}} \right) \right) - s\\
+    & = \frac{r}{3} \cdot \left( \sum_{y = 0}^{\left\lfloor\frac{\log_3 r}{2}\right\rfloor} \frac{1}{3^{2y}} \cdot \frac{4}{3} \cdot \left( 1 - \frac{1}{2^{2 + 2\left\lfloor\frac{\log_2 \frac{r}{3^{2y}}}{2}\right\rfloor}} \right) \right) - s\\
+    & > \frac{4r}{9} \cdot \left( \sum_{y = 0}^{\left\lfloor\frac{\log_3 r}{2}\right\rfloor} \frac{1}{3^{2y}} \cdot \left( 1 - \frac{1}{2^{\log_2 \frac{r}{3^{2y}}}} \right) \right) - s\\
+    & = \frac{4r}{9} \cdot \left( \sum_{y = 0}^{\left\lfloor\frac{\log_3 r}{2}\right\rfloor} \left( \frac{1}{3^{2y}} - \frac{1}{r} \right) \right) - s			\\ 
+    & = \frac{4r}{9} \cdot \left( \sum_{y = 0}^{\left\lfloor\frac{\log_3 r}{2}\right\rfloor}\frac{1}{3^{2y}} \right) - s - \frac{4}{9} \cdot \left\lfloor\frac{\log_3 r}{2}\right\rfloor\\
+    & = \frac{4r}{9} \cdot \frac{9}{8} \left( 1 - \frac{1}{3^{2 + 2\left\lfloor\frac{\log_3 r}{2}\right\rfloor}} \right) - s - \frac{4}{9} \cdot \left\lfloor\frac{\log_3 r}{2}\right\rfloor\\
+    & > \frac{r}{2} - \frac{1}{2} - s - \frac{4}{9} \cdot \left\lfloor\frac{\log_3 r}{2}\right\rfloor\\
+\end{align*}Now we compute $s$. $\frac{r}{2^{2x}3^{2y}} \ge 1$ is equivalent to $2x \log 2 + 2y \log 3 \le \log r$. So we have $0 \le 2x \le \log_2 r$ and $0 \le 2y \le \log_3 r$. Since the solution lies inside a rectange, $s$ doesn't exceed $\frac{1}{4} \log_2 r \log_3 r$.
+So we have $4|\mathbb{M}| > 2r - 2 - \frac{8}{9}\log_3 r - \log_2 r \log_3 r$, and we are done.
+
+\subsubsection{Solution 3 (Pitchayut Saengrungkongka)}
+We call a subset of $\{1,2,\hdots,n\}$ nice if and only if we can assign signs to each element so that the sum of reciprocals of each element is zero. We aim to show that there exists a nice set of size $\tfrac{2}{5}n$. First, we begin with the following.
+\nl
+\textbf{Claim.}
+Suppose that $S$ is a maximal nice set, then $2k\in S\implies k\in S$.
+\nl
+\begin{proof}
+    Trivial. Assume for the contradiction and do $\tfrac{1}{2k}\to\tfrac 1k - \tfrac{1}{2k}$ to get the better set.
+\end{proof}
+Let $I =\left[\tfrac{n}{12}, \tfrac n6\right]$. For any number $k\in I$, we define $S_k=\{2k,3k,6k\}$. In light of the identity $\tfrac 16 + \tfrac 13 = \tfrac 12$, we aim to get much of the $S_k$'s as possible. However, there are some overlaps that we must take care of.
+\nl We construct a graph $G$ by having all numbers in $I$ as vertices and draw edges from $a$ to $b$ if and only if $S_a\cap S_b\ne\emptyset$.  We have the following claim.
+\nl
+\textbf{Claim.} For any $a,b\in I$, we have
+\begin{itemize}
+    \item $|S_a\cap S_b| \leq 1$
+    \item $|S_a\cap S_b| = 1$ if and only if $3a=2b$ or $3b=2a$.
+    \item Graph $G$ consists of only isolated vertices and matchings.
+\end{itemize}
+\begin{proof}
+    The first two can be checked through a simple calculation. For the third one, we note that if $k$ is has degree two, then both $\tfrac 23 k$ and $\tfrac 32 k$ must be in $I$, which is impossible since $\tfrac 94 > 2$.
+\end{proof} Now for any isolated vertices $k$, we add $\{2k,3k,6k\}$ to $S$. For any edge $2k\to 3k$, we add $\{4k, 9k, 12k, 18k\}$ to $S$ in light of the identity $\tfrac 14 = \tfrac 19 + \tfrac{1}{12} + \tfrac{1}{18}$. Observe that this won't clash as $\{4k,9k,12k,18k\}\subset S_{2k}\cup S_{3k}$.
+\nl Now we use the first claim to adjoin more elements. Right now, $S$ we consider each element $k\in S$ based on residues modulo $6$.
+\begin{itemize}
+    \item If $k\equiv 0\pmod 6$, then any $k<n$ is in $S$. This is because we can keep multiplying by $2$ until we reach $\left[\tfrac n2, n\right]$.
+    \item If $k\equiv 3\pmod 6$, then any $k<\tfrac n2$ is in $S$. This is because $2k$ meets the above case.
+    \item If $k\equiv 2,4\pmod 6$, then we claim that any $k<\tfrac n3$ is in $S$. To see this, note that $\{2^t\cdot k,1.5\cdot 2^tk,3\cdot 2^t\cdot k\}$ is one of those $S_a$'s where $t$ is picked so that $\tfrac n2<3\cdot 2^t\cdot k <n$. Since $2^t\cdot k$ is not a multiple of $3$, it can't be clashed with other sets so $2^t\cdot k\in S\implies k\in S$.
+    \item If $k\equiv 1,5\pmod 6$, then any $k<\tfrac n6$ is in $S$. This is because $2k$ meets the above case.
+\end{itemize}
+It's easy to compute the density of each case to get $\tfrac{1}{6}$, $\tfrac{1}{12}$, $\tfrac{1}{9}$, and $\tfrac{1}{18}$. Thus we get the bound $\left(\tfrac{5}{12}-\epsilon\right)n$ for any $\epsilon >0$.
+
+\subsection{Preliminary notes on grading this problem}
+The bound $2n/5$ is not sharp. The problem is also true if the bound $2n/5$ is replaced by $cn$ where $0<c<1$. The following list gives the number of points awarded for a complete solution in function of the bound.
+\begin{enumerate}
+        \marking{0}{$o(n)$ non-zero terms}
+        \marking{1}{$cn$ non-zero terms for $c<2/9$ and $c$ cannot be arbitrarily close to $2/9$}
+        \marking{2}{$cn$ non-zero terms for values of $c$ arbitrarily close to (but smaller than) $2/9$}
+        \marking{2}{$cn$ non-zero terms for $2/9\leq c < 1/3$ and $c$ cannot be arbitrarily close to $1/3$}
+        \marking{3}{$cn$ non-zero terms for values of $c$ arbitrarily close to (but smaller than) $1/3$}
+        \marking{4}{$cn$ non-zero terms for $1/3\leq c<3/8$ and $c$ cannot be arbitrarily close to $3/8$}
+        \marking{5}{$cn$ non-zero terms for values of $c$ arbitrarily close to (but smaller than) $3/8$}
+        \marking{5}{$cn$ non-zero terms for some $3/8\leq c< 2/5$, even for such $c$ arbitrarily close to $2/5$}
+        \marking{7}{$cn$ non-zero terms for some $c \geq 2/5$}
+\end{enumerate}
+
+\subsection{Marking scheme}
+
+We start by a couple of ideas that are worth 0 points:
+\begin{enumerate}
+    \item Writing down a relation of the type $1/k - 1/(k+1) - 1/k(k+1) = 0$ (for a given value of $k$ or in general for all $k$).
+    \item Stating or proving that one can assemble disjoint nice subsets to build larger nice subsets.
+\end{enumerate}
+Partial credits are distributed as follows. The final grade is the maximum number of points between the ones achieved according to the following scheme and the ones obtained for a complete solution with a different bound. The first point is non-additive to the rest.
+\begin{enumerate}
+        \marking{1}{Considering sets of the type $\{2k,3k,6k\}$ or $\{k,2k,3k,6k\}$, for generic values of $k$.} \textbf{(non-additive)}
+        \marking{2}{Considering a \textbf{linear} number of such sets, which are either disjoint or whose intersections form regular patterns such as between $\{k,2k,3k,6k\}$ and $\{2k,4k,6k,12k\}$, or between $\{2k,4k,6k,12k\}$ and $\{3k,6k,9k,18k\}$).}
+        \marking{2}{Correctly gluing these (intersecting) sets to form larger nice sets.}
+        \marking{1}{Obtaining a nice set of the right cardinality.}
+        \marking{1}{Estimating the cardinality of the obtained nice set and concluding that it has the right lower bound.}
+\end{enumerate}
+

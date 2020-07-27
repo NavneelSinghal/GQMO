@@ -1,0 +1,62 @@
+\section{Problem 6}
+\subsection{Problem}
+Decide whether there exist infinitely many triples $(a,b,c)$ of positive integers such that all prime factors of $a!+b!+c!$ are smaller than $2020$.
+\nl
+\textit{Proposed by Pitchayut Saengrungkongka, Thailand}
+\subsection{Solutions}
+The answer is negative; there are finitely many such triples.
+\nl Let $p$ be a prime greater than $2020$ (for example, $p=2027$). Without loss of generality, let $a\leq b\leq c$. If $a\geq p$, then $p\mid a!+b!+c!$ so we are done. Hence let us assume that $a<p$.
+\begin{claim}
+    $b<a+p<2p$
+\end{claim}
+\begin{proof}
+    Assume that $b\geq a+p$. Then note that $p!a!\mid b!$
+    $$\frac{a!+b!+c!}{a!}=1+\frac{b!\cdot k}{a!} = 1+p!\cdot\text{integer}$$
+    thus any prime factor of $\tfrac{a!+b!+c!}{a!}$ is greater than $p$. Obviously there exists at least one hence a contradiction.
+\end{proof}
+\begin{claim}
+    $c<p!+(2p)!+p$
+\end{claim}
+\begin{proof}
+    Let $N = p!+(2p)!$. Assume that $c\geq N+p$. Notice that $a!+b!\mid N!$ thus $p!(a!+b!)\mid c!$ which means
+    $$\frac{a!+b!+c!}{a!+b!} = 1+p!\cdot\text{integer}$$
+    thus any prime factor of $\frac{a!+b!+c!}{a!+b!}$ is greater than $p$. Obviously at least one exists so contradiction.
+\end{proof}
+The two claims above give the bound for $a,b,c$. Hence there are finitely many tuples.
+\begin{remark}
+    The problem generalizes to $a_1!+a_2!+\hdots+a_n!$. The proof is basically just keep applying the same argument until you get the bounds of all $a_i$'s, which is quite techical and not worth asking.
+\end{remark}
+\subsection{Marking Scheme}
+To our knowledge, we don't know any substantially different approach to this problem. If such approach happens, it should be judged as equivalently as possible.
+\nl The marking scheme is divided into three additive parts. However, the partial credits within each part are \textbf{not additive}.
+\nl In what follows, assume that $a\leq b\leq c$.
+\begin{enumerate}
+        \marking{0}{Examples of non-rewarding observations: any subset of the following.}
+        \begin{enumerate}
+            \item Try to construct such triples.
+            \item Assume that $a\leq b\leq c$ (or similar variants).
+            \item Reduce the problem to showing that $c$ is bounded by a constant.
+            \item List all primes smaller than 2020.
+            \item Correctly guess the answer.
+            \item Prove that for a \textbf{chosen} constant $k\in\mathbb{Z}$, there exists only finitely many positive integer $a$ such that all prime factors of $a!+k$ are smaller than $2020$.
+            \item Prove the smaller case (i.e. when $2020$ is replaced to smaller number), that does not show the idea of how to do the general case.
+        \end{enumerate}
+        \marking{1}{Showing that $a$ must be bounded by a constant}
+        \marking{3}{Showing that $b$ must be bounded by a constant}
+        \begin{enumerate}
+                \marking{1}{Make a serious attempt of using the fact that each prime factor of an integer $n\equiv 1\pmod{k!}$ must be greater than $k$, or its similar variants.}
+        \end{enumerate}
+        \marking{3}{Showing that $c$ must be bounded by a constant}
+\end{enumerate}
+In addition, points could be given for contestants who have proposed and solved the easier version to this problem. These points are \textbf{not additive} to each other and are \textbf{not additive} to the mainstream progress above.
+\begin{enumerate}
+        \marking{1}{Prove that for \textbf{any} constant $k\in\mathbb{Z}$, there exists only finitely many positive integer $a$ such that all prime factors of $a!+k$ are smaller than $2020$.}
+        \marking{2}{Prove that for there exists only finitely many pairs $(a,b)$ of positive integers such that all prime factors of $a!+b!$ are smaller than $2020$.}
+        \marking{5}{Prove that for a \textbf{chosen nonzero} constant $k$, there exists only finitely many pairs $(a,b)$ of positive integers such that all prime factors of $a!+b!+k$ are smaller than $2020$.}
+\end{enumerate}
+The correct solution should be judged as 7 points. However, the following deductions could be applied.
+\begin{enumerate}
+        \marking{-0}{The contestant has an incorrect bound which is caused by \textbf{only} miscomputation.}
+        \marking{-1}{The contestant has incorrectly do the first part, by claiming the contradiction if $a\geq 2020$, where, in principle $a$ could lie between $2021$ to $2026$ (inclusive).}
+        \marking{-1}{The contestant has any other nontrivial minor error.}
+\end{enumerate}

@@ -1,0 +1,40 @@
+\documentclass{qmo}
+
+\qmotime{Time: 5 hours}
+\date{May 9th, 2020}
+\level{Beginner level}
+
+\begin{document}
+\maketitle
+\begin{flushright}
+    \emph{Each problem is worth 7 points.}
+\end{flushright}
+\begin{problem}
+    Find all quadruples of real numbers $(a,b,c,d)$ such that the equalities 
+    $$X^2 + a X + b = (X-a)(X-c) \mathrm{\,\,and\,\,} X^2 + c X + d = (X-b)(X-d)$$
+    hold for all real numbers $X$.
+\end{problem}
+
+\begin{problem}
+    The Bank of Z{\"u}rich issues coins with an $H$ on one side and a $T$ on the other. Alice has $n$ of these coins arranged in a line from left to right. She repeatedly performs the following operation: if some coin is showing its $H$ side, Alice chooses a group of consecutive coins (whose size can be any integer between $1$ to $n$, both inclusive) and flips all of them; otherwise, all coins show $T$ and Alice stops. For instance, if $n = 3$, Alice may perform the following operations: $THT \to HTH \to HHH \to TTH \to TTT$. She might also choose to perform the operation $THT \to TTT$.\nl
+    For each initial configuration $C$, let $m(C)$ be the minimal number of operations that Alice must perform. For example, $m(THT) = 1$ and $m(TTT) = 0$. Determine the largest value of $m(C)$ over all $2^n$ possible initial configurations $C$.
+\end{problem}
+
+\begin{problem}
+    Let $ABC$ be a triangle. The tangent, at $A$, to the circumcircle of $ABC$ meets $BC$ at point $D$. Point $X \ne D$ is on the line $BC$ such that $AD = AX$, and point $Y$ is the foot of the perpendicular from $C$ onto $AD$. Prove that if $BD = BC$, then $XY$ is parallel to $AC$.
+\end{problem}
+
+\newpage
+
+\begin{problem}
+    Find all functions $f$ that are defined on the set of all real numbers and take real values, such that for any real $x,y$, it holds that $$f(x + y) = (-1)^{\lfloor y \rfloor} f(x) + (-1)^{\lfloor x \rfloor} f(y)$$ where $\lfloor x \rfloor$ denotes the largest integer that does not exceed $x$.
+\end{problem}
+\begin{problem}
+    Let $n,k$ be positive integers such that $k\leq 2^n$. A and B are playing the following variant of the guessing game. First, A secretly picks an integer $x$, such that $1\leq x\leq n$. B will attempt to determine $x$ by asking some questions, which are described as follows. In each turn, B chooses $k$ distinct subsets of $\{1, 2, \cdots, n\}$, and then, for each chosen set $S$, asks the question ``Is $x$ in the set $S$?". Then A has to pick one question and tell both the question and its answer to B.\nl
+    Find, with proof, all pairs $(n,k)$ such that B could determine $x$ in finitely many turns with absolute certainty.
+\end{problem}
+\begin{problem}
+    For any integer $n$ not equal to $1$ or $-1$, define $p(n)$ as the smallest prime number\footnote{A prime number is an integer greater than $1$ whose only positive divisors are $1$ and itself.} that divides $n$. In particular, $p(0)=2$. We also define $p(1) = p(-1) = 1$. Suppose that a nonconstant polynomial\footnote{A polynomial $p$ is a function of the form $p(n) = a_0 + a_1 n + \cdots + a_k n^k$ where the $a_k$'s are called the coefficients of the polynomial $p$, and $k$ is a non-negative integer.} $f$ with integer coefficients satisfies $p(f(n)) \leq p(n)$ for every positive integer $n$. Prove that $f(0)=0$. 
+\end{problem}
+
+\end{document}

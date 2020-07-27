@@ -1,0 +1,73 @@
+\section{Problem 5}
+\subsection{Problem}
+Let $\mathbb{Q}$ denote the set of rational numbers. Determine all functions $f:
+\mathbb{Q}\rightarrow\mathbb{Q}$ such that, for all $x,y \in\mathbb{Q}$,
+\[f(x)f(y+1) = f(xf(y))+f(x).\]
+\textit{Proposed by Nicolás López Funes and José Luis Narbona Valiente, Spain}
+
+\subsection{Solutions}
+We denote the given functional equation by $\mathbf{E}(x,y)$. The functions 
+$f: x \mapsto 0$, $f: x \mapsto 2$ and $f: x \mapsto x$ are solutions. We prove below 
+that there are no other solutions.
+
+\subsubsection{Solution 1 (Vincent Jugé)}
+Let $f$ be a solution other than the two functions $x \mapsto 0$ and $x \mapsto 2$. First,
+$\mathbf{E}(0,x-1)$ states that $f(0)(f(x)-2)=0$ for all $x\in\mathbb{Q}$. Since $f$ is not equal to
+the function $x \mapsto 2$, it follows that $f(0)=0$.\\\\
+Then, since f is not constantly zero, there exists a real number $z$ such that $f(z)\neq 0$. The
+equality $\mathbf{E}(z,0)$ states that $f(z)(f(1)-1)=0$, i.e., that $f(1)=1$.\\\\
+We prove now, by induction, that $f(n)=n$ for all integers $n \geq 0$. Indeed, this is already the case
+for $n = 0$ and $n = 1$ and, if $f(n)=n$ for some integer $n \geq 0$, the equality
+$\mathbf{E}(1,n)$ states that
+\[f(n + 1) = f(1)f(n + 1) = f(f(n)) + f(1) = n + 1.\]
+Furthermore, if $x=\frac{p}{q}$ is a positive rational number, with $p$ and $q$ positive integers,
+the equality $\mathbf{E}(x,q)$ proves that $qf(x)=p$, i.e., that $f(x)=x$.\\\\
+Now, let us focus on negative rational numbers, and let $a = f(-1)$. The equality $\mathbf{E}(1, -1)$ states
+that $f(a) = -1$, and thus that $a < 0$. Then, if $r$ is a negative rational number, the equality
+$\mathbf{E}(-1, -r)$ also states that $f(r) = -ar$. It follows that $-1 = f(a) = -a^2$ and, since
+$a<0$, that $a=-1$.\\\\
+Hence, we conclude that $f(x)=x$ for all $x\in\mathbb{Q}$, which completes the proof.
+
+\subsubsection{Solution 1a (Jhefferson Lopez)}
+We demonstrate an alternative way of getting $f(0)=0$ if $f$ is not constantly 2. The equation
+$\mathbf{E}(0,-1)$ tells us that $f(0)^2 = 2f(0)$, which means that either $f(0)=0$ or $f(0)=2$. If
+$f(0)=2$, then $\mathbf{E}(0,x-1)$ implies that $f(x)=2$ for all $x\in\mathbb{Q}$, which contradicts
+our assumption. Therefore $f(0)$ must be 0.
+
+\subsubsection{Solution 2 (Jhefferson Lopez)}
+Just like in solution 1 we show that if $f$ is a solution other than $x \mapsto 0$ and 
+$x \mapsto 2$, then $f(x) = x$ for all rational numbers $x \geq 0$.\\\\
+From the equality $\mathbf{E}(1,-1)$ we get that $f(f(-1))=-1$. Using this, the equality
+$\mathbf{E}(1,f(-1))$ tells us that $f(1+f(-1))=1+f(-1)$. The equality $\mathbf{E}(x,f(-1))$ states
+that \[f(x)f(1+f(-1)) = f(xf(f(-1)))+f(x)\]
+which then, using the two facts we just derived, implies that
+\begin{equation}
+    f(x)f(-1)=f(-x). \label{f-is-almost-odd}
+\end{equation}
+Plugging $x=-1$ into (\ref{f-is-almost-odd}), we get that $f(-1)^2=f(1)=1$. This leaves us with the
+two cases $f(-1)=1$ or $f(-1)=-1$. If $f(-1)=1$, then we have $f(f(-1))=f(1)=1$, which is a
+contradiction to $f(f(-1))=-1$. If $f(-1)=-1$, then (\ref{f-is-almost-odd}) tells us that
+$f(x)=-f(-x)$ for all $x\in\mathbb{Q}$. Since we already know $f(x)=x$ for all rational 
+$x\geq 0$, this tells us that $f(x)=x$ for all $x\in\mathbb{Q}$, which completes the proof.\\\\
+\textit{Remark.} We can also first show $f(n)=n$ for all integers $n\geq
+0$, then show $f(x)=-f(-x)$ as mentioned above, and then use $\mathbf{E}(\frac{p}{q},q)$ with
+integers $p,q \neq 0$ to conclude that $f(x)=x$ for all $x\in\mathbb{Q}$.
+
+\subsection{Marking scheme}
+In every sub-enumeration, the mentioned partials are given, if the mentioned part of the solution
+has not been completed. 
+\begin{enumerate}
+        \marking{1}{Discovering all the solutions (without any additional "solutions" that do not actually
+        satisfy the functional equation), and mentioning they all work\footnote{Something along the lines 
+        of ``it's obvious that they are solutions" is enough.}}
+        \marking{6}{Proving that there can not be any other solutions}
+        \begin{enumerate}
+                \marking{1}{Showing that if $f$ is not constant, then $f(0)=0$ and $f(1)=1$}
+                \marking{1}{Showing that if $f$ is not constant, then $f(n)=n$ for all integers $n \geq 2$} 
+                \marking{1}{Showing that if $f$ is not constant, then $f(x) = x$ for all rational $x > 0$}
+                \marking{2}{Showing that if $f$ is not constant, then $f(n) = -f(-n)$ for all integers 
+                $n$\footnote{This point should also be awarded if the contestant finds a way to show 
+                $f(n) = n$ for all negative integers $n$ without deriving $f(n)=-f(-n)$ explicitly.}}
+                \marking{Sum of the corresponding}{Any linear combination of the above}
+        \end{enumerate}
+\end{enumerate}

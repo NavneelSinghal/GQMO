@@ -1,0 +1,211 @@
+\newcommand{\dangle}{\measuredangle}
+\section{Problem 8}
+\subsection{Problem}
+Let $ABC$ be an acute scalene triangle, with the feet of $A, B, C$ onto $BC, CA, AB$ being $D, E, F$ respectively. Suppose $N$ is the nine-point centre of $DEF$, and $W$ is a point inside $ABC$ whose reflections over $BC, CA, AB$ are $W_a, W_b, W_c$ respectively. If $N$ and $I$ are the circumcentre and incentre of $W_aW_bW_c$ respectively, then prove that $WI$ is parallel to the Euler line of $ABC$.\nl
+\emph{Note: If XYZ is a triangle with circumcentre O and orthocentre H, then the line OH is called the Euler line of XYZ and the midpoint of OH is called the nine-point centre of XYZ.}\nl
+\textit{Proposed by Navneel Singhal, India and Massimiliano Foschi, Italy}
+
+\subsection{Solutions}
+\subsubsection{Solution 1 (Navneel Singhal)}
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.5]
+        %\tkzInit[xmin=-0.8,ymin=-1.8,xmax=5.5,ymax=7.5]
+        %\tkzClip
+        \tkzDefPoints{ 0/0/B,5/0/C,1.5/4/A}
+        \tkzDefSpcTriangle[orthic](A,B,C){D,E,F}
+        \tkzDefTriangleCenter[euler](D,E,F) \tkzGetPoint{N}
+        \tkzDrawPolygon(A,B,C)
+        \tkzDrawPolygon(D,E,F)
+        \tkzDefMidPoint(E,F)				\tkzGetPoint{D'}
+        \tkzDrawCircle(N,D')
+        \tkzDefCircle[ex](E,D,F)			\tkzGetLength{ra}
+        \tkzDrawCircle[R](A,\ra pt)
+        \tkzDefCircle[ex](E,F,D)			\tkzGetLength{rc}
+        \tkzDrawCircle[R](C,\rc pt)
+        \tkzDefCircle[ex](D,E,F)			\tkzGetLength{rb}
+        \tkzDrawCircle[R](B,\rb pt)
+        \tkzInterLL(E,F)(B,C) 				\tkzGetPoint{T}
+        \tkzInterLL(F,D)(C,A) 				\tkzGetPoint{R}
+        \tkzInterLL(D,E)(A,B) 				\tkzGetPoint{S}
+        \tkzDefTriangleCenter[in](A,B,C) \tkzGetPoint{I}
+        \tkzDefPointBy[reflection=over B--I](N) \tkzGetPoint{nb}
+        \tkzDefPointBy[reflection=over C--I](N) \tkzGetPoint{nc}
+        \tkzInterLL(B,nb)(C,nc) \tkzGetPoint{W}
+        \tkzDefPointBy[projection=onto B--C](W) \tkzGetPoint{X}
+        \tkzDefPointBy[projection=onto C--A](W) \tkzGetPoint{Y}
+        \tkzDefPointBy[projection=onto A--B](W) \tkzGetPoint{Z}
+        \tkzDrawPolygon(X,Y,Z)
+        \tkzDrawSegment(W,X)
+        \tkzDrawSegment(W,Y)
+        \tkzDrawSegment(W,Z)
+        %\tkzDrawSegment(T,S)
+        %\tkzDrawSegment(T,R)
+        \tkzDrawSegment(R,S)
+        \tkzDrawSegment(B,S)
+        \tkzDrawSegment(D,S)
+        \tkzDrawSegment(R,F)
+        \tkzDrawCircle(A,N)
+        \tkzDrawCircle(B,N)
+        \tkzDrawCircle(C,N)
+        \tkzDefTriangleCenter[circum](D,E,F) \tkzGetPoint{Oo}
+        \tkzDefTriangleCenter[symmedian](D,E,F) \tkzGetPoint{Ko}
+        \tkzDefLine[perpendicular=through N](R,S) \tkzGetPoint{Np}
+        \tkzInterLL(Oo,Ko)(N,Np) \tkzGetPoint{Q}
+        \tkzDefPointBy[reflection=over B--C](N) \tkzGetPoint{N_a}
+        \tkzDefPointBy[reflection=over A--B](N) \tkzGetPoint{N_c}
+        \tkzDefPointBy[reflection=over A--C](N) \tkzGetPoint{N_b}
+        \tkzDrawPoints(A,B,C,D,E,F,N,T,R,S,Q,N_a,N_b,N_c,W,X,Y,Z)
+        \tkzInterLC[R](Q,A)(A,\ra pt) \tkzGetPoints{P'}{P''}
+        \tkzDrawCircle(Q,P'')
+        \tkzDrawSegment(A,R)
+        \tkzDrawSegment(B,T)
+        \tkzDrawSegment(F,T)
+        \tkzInterLC(Q,A)(A,N) \tkzGetPoints{P'''}{P''''}
+        \tkzDrawCircle(Q,P'''')
+        \tkzLabelPoint[above right=-2pt and -2pt, font=\scriptsize](A){\contour{white}{$A$}}
+        \tkzLabelPoint[below right=0pt and -3pt, font=\scriptsize](B){\contour{white}{$B$}}
+        \tkzLabelPoint[below right=-2pt and -2pt, font=\scriptsize](C){\contour{white}{$C$}}
+        \tkzLabelPoint[below right=0pt and -6pt, font=\scriptsize](D){\contour{white}{$D$}}
+        \tkzLabelPoint[above right=-2pt and -2pt, font=\scriptsize](E){\contour{white}{$E$}}
+        \tkzLabelPoint[left=-1pt, font=\scriptsize](F){\contour{white}{$F$}}
+        \tkzLabelPoint[left, font=\scriptsize](R){\contour{white}{$R$}}
+        \tkzLabelPoint[left, font=\scriptsize](S){\contour{white}{$S$}}
+        \tkzLabelPoint[left, font=\scriptsize](T){\contour{white}{$T$}}
+        \tkzLabelPoint[above right=-2pt and -2pt, font=\scriptsize](N){\contour{white}{$N$}}
+        \tkzLabelPoint[below left=-2pt and -2pt, font=\scriptsize](Q){\contour{white}{$Q$}}
+        \tkzLabelPoint[below left=0pt and -6pt, font=\scriptsize](N_a){\contour{white}{$N_a$}}
+        \tkzLabelPoint[above right=0pt and -2pt, font=\scriptsize](N_b){\contour{white}{$N_b$}}
+        \tkzLabelPoint[above left=-4.5pt and 2pt, font=\scriptsize](N_c){\contour{white}{$N_c$}}
+        \tkzLabelPoint[below, font=\scriptsize](X){\contour{white}{$X$}}
+        \tkzLabelPoint[right, font=\scriptsize](Y){\contour{white}{$Y$}}
+        \tkzLabelPoint[above left = 0pt and -4pt, font=\scriptsize](Z){\contour{white}{$Z$}}
+        \tkzLabelPoint[below left=-2pt and -2pt, font=\scriptsize](W){\contour{white}{$W$}}
+
+    \end{tikzpicture}\\
+\end{center}
+Firstly note that since $AW_b = AW = AW_c$ and $NW_b = NW_c$, triangles $AW_bN$ and $AW_cN$ are congruent. Thus we have $\angle BAN = \angle WAC$. If $N_a, N_b, N_c$ were the reflections of $N$ in $BC, CA, AB$ respectively, then by a similar argument, if the circumcenter of $N_aN_bN_c$ is $W'$, then $\angle BAN = \angle W'AC$, so $A, W, W'$ are collinear. Similarly, $B, W, W'$ are collinear, and thus $W = W'$.\nl
+Since $N_bW = W_bN$, the circumradii of $N_aN_bN_c$ and $W_aW_bW_c$ are the same. Let the midpoint of $WW_a$ be $X$ (which is the foot of $W$ onto $BC$). Define $Y, Z, N_a', N_b', N_c'$ analogously. By a homothety at $W$ with ratio $\frac{1}{2}$, the incenter of $XYZ$ is mapped to the midpoint of $W$ and the incenter of $W_aW_bW_c$. Note that $N_a'N_b'N_c'XYZ$ is cyclic due to this homothety and the analogous one at $N$, combined with the observation that the circumradii of $N_aN_bN_c$ and $W_aW_bW_c$ are the same. By the reflection in the center of this circle (which is the midpoint of $NW$ by the homothety), if $N_a'N$ meets this circle again at $N_A$ (and $N_B, N_C$ are defined analogously), then the line joining $W$ and the incenter of $XYZ$ is mapped to the line joining $N$ and the incenter of $N_AN_BN_C$.\nl
+Consider the inversion at $N$ with power $NN_A \cdot NN_a$, where the lengths are directed. Then $N_BN_C$ is mapped to the circle passing through $N, N_b, N_c$, which is the circle centered at $A$, passing through $N$ (say $\omega_A$). The incircle of $N_AN_BN_C$ is mapped to a circle tangent to $\omega_A, \omega_B, \omega_C$. We show that this tangency is internal. \nl
+\textbf{(Handling of configuration issues)} Since $W$ is inside $ABC$, $N$ is also inside $ABC$ (because of the angle relations). When $ABC$ is an equilateral triangle, we know that the touching is internal. When we move $A$ in the plane, and the touching changes from internal to external for at least one circle, since all our constructions are continuous, there must be a point where the transition happens, i.e., the common circle degenerates to a line or a point or one of $\omega_A, \omega_B, \omega_C$ degenerates to a line or a point (the last two of which are impossible as $N$ is inside $ABC$ and $A$, $B$ and $C$ are finite points). First we consider the case of the common circle degenerating to a line. By the \emph{expansion} \footnote{For a reference, please refer to the following article: \url{http://jcgeometry.org/Articles/Volume2/JCG2013V2pp11-25.pdf}} which decreases the radius of the similarly oriented circles $\omega_A, \omega_B, \omega_C$ by the radius of the nine-point circle of $DEF$ (or an analogous method to the second approach below), we have that there is a common tangent to all the excircles of $DEF$, such that all of them are on the same side of the line. Note that $EF$ is a common tangent to the excircles, but it separates two pairs of excircles. Thus either the one of the excircles degenerates (in which case one of the angles of $ABC$ becomes $90^\circ$, which is impossible), or the other direct tangent of the $E, F$-excircles is tangent to the $D$-excircle. Since the distance from $A$ to $EF$ is the same as the distance from $A$ to this other tangent, which is in fact the reflection of $EF$ over $BC$, it means that the $A$ is on an angle bisector of this tangent and $EF$. Since $A$ is not on $BC$, it must be on the other angle bisector, which is in fact perpendicular to $BC$. Thus $EF$ passes through $D$, which is a contradiction, by Ceva's theorem, unless $D$ is either of $B$ or $C$, which is impossible because $ABC$ is acute. Thus the common circle degenerates to a point instead, and since $A, B, C$ are not collinear, $\omega_A, \omega_B, \omega_C$ are not coaxial, and thus the common circle must be $N$. This means that the incircle of $N_AN_BN_C$ has an infinite size, which is a contradiction. This shows that as long as we can move on a line through the position of $A$ such that $ABC$ is equilateral without contradicting the conditions, the tangency is internal. Now we claim that while moving $A$ from the position such that $ABC$ is an equilateral triangle to the original position, $ABC$ stays acute and $W$ never steps out of $ABC$ (which would finish off the discussion of the configuration issues). For this, we need a preliminary claim: all angles of $ABC$ are $> 30^\circ$. Note that the perpendicular bisector of $EF$ contains the reflection of $D$ over $N$, say $O_D$, which is the reflection of the circumcenter of $DEF$ over $EF$. $O_D$ would be on the other side of $BC$ than $A$ (or on $BC$) iff the midpoint of arc $EDF$ is at least as close to $EF$ as $O_D$, which  is true iff $\angle BAC \le 30^\circ$, and we are done. Firstly we show that as $A$ moves on the mentioned line, $ABC$ remains acute. Since the angles at $B$ and $C$ change monotonically, and the final and the initial locations were such that these were acute in both cases, they always remain acute. It only remains to be shown that the angle at $A$ remains acute. Suppose $A_0$ is the position of $A$ such that $A_0BC$ is an equilateral triangle and $A, A_0$ are on the same sides of $BC$. Note that since we have shown already that all the angles of $ABC$ are at least $30^\circ$, the line $AA_0$ meets the circumcircle of $A_0BC$ at a point between the midpoints of arcs $A_0B$ and $A_0C$, say at $T$. Note that the point where $BC$ subtends the maximum angle on a point on $A_0T$ is where the circle through $B, C$ and tangent to $A_0T$ meets $A_0T$. Note that $A_0T$ does not intersect the circle with diameter $BC$ for any permissible $T$, so the largest angle is indeed acute, hence we are done by the bitonicity of the angle at $A$. Now suppose $W$ steps onto or outside $ABC$. Then either $W$ steps over a side or $W$ coincides with a vertex. If it coincides with a vertex, $N$ crosses the opposite side, which is impossible as the condition that all the angles of $ABC$ are $> 30^\circ$ is maintained due to monotonicity/bitonicity of the angle at $A$ (with a maximum in between in the second case) and the monotonicity of angles at vertices $B$ and $C$. If it crosses a side, then $N$ coincides with a vertex, which is impossible since the distance from a vertex to $N$ is the sum of the corresponding exradius and half the circumradius of $DEF$ by Feuerbach's theorem.\nl
+Call this circle $\omega$ and suppose $Q$ is the center of $\omega$. Then $NQ$ passes through the incenter of $N_AN_BN_C$. Thus it suffices to show that $NQ$ is parallel to the Euler line of $ABC$. Firstly, we show that $Q$ is the center of a circle $(Q)$ tangent internally to the excircles of $DEF$ (which are centered at $A, B, C$ respectively). We show it in two ways.\nl
+\textbf{Approach 1.} Consider the \emph{expansion} which decreases the radius of the similarly oriented circles $\omega_A, \omega_B, \omega_C$ by the radius of the nine-point circle of $DEF$. Then $N$ is mapped to the nine-point circle of $DEF$. Note that the image of $\omega_A$ is tangent to this circle since tangencies are preserved in expansions, so $\omega_A$ is mapped to the $D-$excircle of $DEF$ by Feuerbach's theorem (as $A$ is the $D-$excenter of $DEF$ since $\angle BAC$ is acute). The image of $\omega$ is tangent to the images of $\omega_A, \omega_B, \omega_C$, which finishes the proof of our claim.\nl
+\textbf{Approach 2.} Consider the nine-point circle $(N)$ of $DEF$. Since $QA + AN = r_\omega$ (where $r_\omega$ is the radius of $\omega$), if $r_D$ is the radius of the excircle of $DEF$ and $R'$ is the radius of the nine-point circle of $DEF$, then $r_\omega - R' = QA + AN - R' = QA + r_D$ (where the last equality follows from Feuerbach's theorem and the fact that $A$ is the $D-$excenter of $DEF$ since $\angle BAC$ is acute), and similarly $r_\omega - R' = QB + r_E$ and $r_\omega - R' = QC + r_F$. This implies the existence of a circle centered at $Q$ which is tangent to all three excircles of $DEF$.\nl
+There are two ways to finish.\nl
+\textbf{Approach 1.} Suppose $EF, FD, DE$ meet $BC, CA, AB$ at $T, S, R$ respectively. Since $EF$ is directly tangent to the $E$ and $F$-excircles of $DEF$, and $T$ is on the line joining their centers, $T$ is the exsimilicenter of these circles. By Menelaus' theorem (or Monge's theorem or power of a point), the line joining the tangency points of $(N)$ with these circles passes through $T$, so since tangency is preserved under inversion, $(N)$ is preserved under this inversion. Similarly, $(Q)$ is preserved under this inversion. So the power of this inversion equals the power of $T$ with respect to both these circles, and thus $T$ is on the radical axis of $(N), (Q)$. Similarly, $R$ and $S$ are also on the mentioned radical axis. Thus ${RST} \perp NQ$. Now note that by the radical axis theorem on the circle with diameter $BC$, the circumcircle and the nine-point circle of $ABC$, $T$ lies on the radical axis of the circumcircle and the nine-point circle of $ABC$. Similarly, $R$ and $S$ are also on the mentioned radical axis. Thus $RST$ is perpendicular to the line joining the centers of these circles, which is precisely the Euler line of $ABC$. This gives us that $NQ$ is parallel to the Euler line of $ABC$, as required. \nl
+\textbf{Approach 2 (Massimiliano Foschi).} Let $D'$, $E'$ and $F'$ be the midpoints of $EF$, $FD$ and $DE$, respectively. Let $B'$ and $C'$ the points where the $E$-excircle and the $F$-excircle of $DEF$ are tangent to $EF$. Then $FB'=EC'$, which implies that $D'$ lies on the radical axis of said excircles. As the line through their centers is the external angle bisector of $\widehat{EDF}$, their radical axis is the internal angle bisector of $\widehat{E'D'F'}$. Thus, the radical centers of the three excircles of $DEF$ is $I_1$, the incenter of $D'E'F'$.\nl
+Consider the inversion with center $I_1$ which fixes the three excircles. Clearly it swaps $\Gamma$ and $\Omega$, hence $I_1$, $N$ and $Q$ are collinear. Let $G$ be the barycenter of $DEF$. Consider the homothety, centered at $G$ with factor $-2$. The image of $I_1$ is the incenter of $DEF$, which is the orthocenter of $ABC$. The image of $N$ is the nine-point center of $ABC$. Therefore the image of $I_1NQ$ is the Euler line of $ABC$, which yields the result.
+\subsubsection{Solution 2 (Pitchayut Saengrungkongka and Navneel Singhal)}
+Since $ABC$ is acute, $A, B, C$ are respectively the $D, E, F$-excenters of $DEF$. By Feuerbach's theorem, these excircles are all tangent to the nine-point circle of $DEF$. Let $T_a, T_b, T_c$ be the contact points of the nine-point circle of $DEF$ with the three excircles of $DEF$. Let $X_a, X_b, X_c$ be the points where the tangents to the nine-point circle of $DEF$ at $\{T_b, T_c\}$, $\{T_c, T_a\}$ and $\{T_a, T_b\}$ meet, respectively. \nl
+Since $N$ is inside $ABC$, $\angle T_bNT_c < 180^\circ$, and $T_a$ and $N$ are on the same side of $T_bT_c$ (as $T_a$ is on the segment $AN$ and $A$ and $N$ are on the same side of $T_bT_c$ which is because segments $T_bT_c$ and $AN$ do not intersect because $T_b$ is on segment $BN$ and $T_c$ is on segment $CN$), so $\angle T_bT_aT_c$ is acute. Thus $T_aT_bT_c$ is acute, and the incenter of this triangle is $N$ (An alternative fix is to note that since $N$ is inside $ABC$, and $T_a, T_b, T_c$ are on $AN, BN, CN$ respectively, $N$ is inside $T_aT_bT_c$, so $T_aT_bT_c$ is acute because of having its circumcenter lie inside it). By radical axes theorem on the $E, F$-excircles of $DEF$ and the nine-point circle of $DEF$, note that $X_a$ is on the radical axis of the $E, F$ excircles.\nl
+Let $D'$, $E'$ and $F'$ be the midpoints of $EF$, $FD$ and $DE$, respectively. Let $B'$ and $C'$ the points where the $E$-excircle and the $F$-excircle of $DEF$ are tangent to $EF$. Then $FB'=EC'$, which implies that $D'$ lies on the radical axis of said excircles. As the line through their centers is the external angle bisector of $\widehat{EDF}$, their radical axis is the internal angle bisector of $\widehat{E'D'F'}$. Thus, the radical centers of the three excircles of $DEF$ is $I_1$, the incenter of $D'E'F'$. Thus $I_1X_a$ is perpendicular to $BC$.\nl
+Since $AW_b = AW = AW_c$ and $NW_b = NW_c$, $AN$ is the perpendicular bisector of $W_bW_c$. Now note that $W_bW_c \perp AN \perp X_bX_c$, so we have $W_bW_c \parallel X_bX_c$. Similarly we have $W_aW_b \parallel X_aX_b$ and $W_cW_a \parallel X_cX_a$, so the triangles $W_aW_bW_c$ and $X_aX_bX_c$ are homothetic. Since $WW_a \perp BC \perp I_1X_a$, we have $WW_a \parallel I_1X_a$. Similarly we have $WW_b \parallel I_1X_b$ and $WW_c \parallel I_1X_c$, so since $W_aW_bW_c$ and $X_aX_bX_c$ are homothetic, the quadrilaterals $W_aW_bW_cW$ and $X_aX_bX_cI_1$ are homothetic. Since $N$ is the incenter of $X_aX_bX_c$ and $I$ is the incenter of $W_aW_bW_c$, the pentagons $W_aW_bW_cWI$ and $X_aX_bX_cI_1N$ are homothetic because $N$ and $I$ are corresponding points in the homothetic triangles $W_aW_bW_c$ and $X_aX_bX_c$. Hence there exists a homothety mapping $W_aW_bW_cWI$ to $X_aX_bX_cI_1N$. This homothety sends $WI$ to $I_1N$, and thus these lines are parallel. Hence, it suffices to show that $I_1N$ is parallel to the Euler line of $ABC$.\nl
+Note that the Euler line of $ABC$ is the line joining the nine-point center of $ABC$ (which is the circumcenter of $DEF$) and the orthocenter of $ABC$ (which, since $ABC$ is acute, is the incenter of $DEF$). By a homothety at the centroid of $DEF$ which takes $DEF$ to its medial triangle, the circumcenter of $DEF$ is taken to the circumcenter of its medial triangle (which is $N$), and the incenter of $DEF$ is taken to the incenter of the medial triangle (which is $I_1$). Hence the Euler line of $ABC$ is mapped to the line $I_1N$, so they are parallel, as needed.
+\subsubsection{Solution 3 (Pitchayut Saengrungkongka)}
+\newcommand{\ol}[1]{\overline{#1}}%
+We present a highly motivated complex bash which takes inspiration from the previous solution. Let $\odot(DEF)$ be the unit circle. We use the standard set up where $D = a^2$, $E=b^2$ and $F=c^2$. It's well known that we can select the signs of $a,b,c$ such that the coordinates of $A,B,C$ are given by
+$$A = ab+ac-bc,\ B=ba+bc-ac,\ C=ca+cb-ab,$$
+since $ABC$ is acute and $A, B, C$ are the excenters of $DEF$.
+Since $N=\tfrac{a^2+b^2+c^2}{2}$, we can compute $N-A = \tfrac{(b+c-a)^2}{2}$. Therefore,
+$$|N-A|=\frac 12 |b+c-a|^2 = \frac{(b+c-a)(ab+ac-bc)}{2abc}$$
+Now we will let point $X,Y,Z$ be the complex numbers correspond to $\tfrac{N-A}{|N-A|}$, etc. Let $O$ be the circumcenter of $\triangle DEF$. Notice that as $N$ lies inside $\triangle ABC$, we get that $O$ lies inside $\triangle XYZ$. Thus if we let $\triangle X_1Y_1Z_1$ be the tangential triangle of $\triangle XYZ$, we get that $\triangle X_1Y_1Z_1$ are homothetic with $\triangle XYZ$.
+\nl Now we will compute the coordinate of $X_1$. First, note that we have
+$$X = \frac{abc(b+c-a)}{(ab+ac-bc)}, \text{ etc.}$$
+Therefore we can compute with some effort that
+\begin{align*}
+    X_1 &= \frac{2YZ}{Y+Z} \\
+    &= \frac{2a^2b^2c^2(a+c-b)(a+b-c)}{abc[(a+c-b)(ac+bc-ab)+(a+b-c)(ab+bc-ac)]} \\
+    &= \frac{bc(a^2+2bc-b^2-c^2)}{b^2-bc+c^2}.
+\end{align*}
+Thus we also have
+$$\ol{X_1} = \frac{b^2c^2+2a^2bc-a^2b^2-a^2c^2}{a^2bc(b^2-bc+c^2)}$$
+Now let $P=k(ab+bc+ca)$ be the point such that $X_1P\parallel AD$ where $k\in\mathbb{R}$. We want to show that $k$ is symmetric within $a,b,c$ as we will get the homothetic system $\triangle X_1Y_1Z_1\cup O\cup P\sim\triangle W_aW_bW_c\cup I\cup W$. To do that, we note that
+$$\frac{A-D}{\ol{A}-\ol{D}} = \frac{(a-b)(a-c)}{\ol{(a-b)}\ol{(a-c)}} = a^2bc.$$
+Hence we have
+$$X_1 - k(ab+bc+ca) = a^2bc\ol{X_1} - k\cdot (a^2+ab+ac)$$
+Plugging everything in, we find
+\begin{align*}
+    k(a^2-bc) &= \frac{b^2c^2+2a^2bc-a^2b^2-a^2c^2}{b^2-bc+c^2} - \frac{bc(a^2+2bc-b^2-c^2)}{b^2-bc+c^2} \\
+    &= \frac{(a^2-bc)(bc-b^2-c^2)}{b^2-bc+c^2} \\
+    &= -(a^2-bc)
+\end{align*}
+hence $k=-1$ so we are done by homothety.
+\subsubsection{Solution 4 (Francesco Sala and Pitchayut Saengrungkongka)}
+For convenience, we slightly change the notation by letting $N$ be the nine-point center of $\triangle ABC$ instead and let $M$ be the nine-point center of $\triangle DEF$ instead. 
+\nl First, we note that $\odot(W_aW_bW_c)$ is the pedal circle of $W$ w.r.t. $\triangle ABC$ dilated at $W$ with ratio $2$. Hence its center should be the isogonal conjugate of $W$ w.r.t. $\triangle ABC$, thus $M$ and $W$ are isogonal conjugate w.r.t. $\triangle ABC$.\nl
+\textbf{Claim.} $AN$ is the angle bisector of $\angle HAW$.
+\begin{proof}
+    Let $T$ be the Poncelet point of $A,D,E,F$. Since $T$ lies on the pedal circle of $A$ w.r.t. $\triangle DEF$, which is the $D$-excircle of $\triangle DEF$, it follows that $T$ is the tangency of the nine-point circle and the $D$-excircle of $\triangle DEF$, hence $T\in AM$.
+    \nl Let $H_a$ be the foot from $A$ to $EF$. From above, we deduce that $AH_a = AM$. Thus if $N'$ is the nine-point center of $\triangle AEF$, then it follows that $AN'$ bisects $\angle H_aAW$. Now notice that $\triangle AEF$ and $\triangle ABC$ are inversely similar thus $\{AN', AN\}$ are isogonal w.r.t. $\triangle ABC$. Thus by reflecting across the angle bisector of $\angle BAC$, we deduce the claim.
+\end{proof}
+\noindent Let $O_a, O_b, O_c$, and $O$ be the circumcenters of $\triangle BMC$, $\triangle AMC$, $\triangle AMB$ and $\triangle ABC$ respectively. Clearly $\triangle W_aW_bW_c\cup W$ and $\triangle O_aO_bO_c\cup O$ are homothetic. Hence it suffices to show that the incenter $I$ of $\triangle O_aO_bO_c$ lies on the Euler Line of $\triangle ABC$.\nl
+\textbf{Claim.} Let $T_a, T_b, T_c$ be the reflection of the circumcenters of $\triangle BNC$ ,$\triangle CNA$, $\triangle ANB$ across $BC, CA, AB$ respectively. Then $M, T_a, T_b, T_c$ are concyclic with center $I$.
+\begin{proof}
+    First, by directed angle chasing, we find that
+    \begin{align*}
+        \dangle BMC &= \dangle(BM, BC) + \dangle(CB, CM) \\
+        &= \dangle(BA, BW) + \dangle(CW, CA) \\
+        &= \dangle CWB + \dangle BAC \\
+        &= \dangle CWB + \dangle BHC + 2\dangle CAB \\
+        &= \dangle(CW, CH)+\dangle(BW, BH) + 2\dangle CAB \\
+        &= 2(\dangle(CN, CH) + \dangle(BN, BH) + \dangle BHC) \\
+        &= 2\dangle CNB \\
+        &= \dangle BT_aC
+    \end{align*}
+    Thus $T_a\in\odot(BMC)$. Therefore if $\triangle O_a'O_b'O_c'$ be the dilated image of $\triangle O_aO_bO_c$ under homothety $\mathcal{H}(M,2)$, it follows that $O_a'\in\odot(BMC)$ thus $O_a'T_a, O_b'T_b, O_c'T_c$ are internal bisectors of $\triangle O_a'O_b'O_c'$ (internal because $T_a$ lies inside ABC so $O_a'$, $T_a$ lie on different sides w.r.t. $ABC$ because $B, C, O_a', T_a$ are concyclic) hence they must concur at $I'$. Thus $\angle MT_aI'=90^{\circ}$ which means that $T_a, T_b, T_c$ lies on the circle with diameter $MI'$, thus it's centered at $I$.
+\end{proof}
+\noindent Thus we will be done if we prove the following lemma (notice that $N_a$ is the midpoint of $NT_a$).\nl
+\textbf{Lemma.}
+Let $\triangle ABC$ be a triangle with nine-point center $N$. Let $N_a, N_b, N_c$ be the nine-point centers of $\triangle BNC$, $\triangle CNA$, $\triangle ANB$. Then the circumcenter of $\triangle N_aN_bN_c$ lies on the Euler Line of $\triangle ABC$.
+\begin{proof}
+    Let $O_a, O_b, O_c, O$ be the circumcenters of $\triangle BNC, \triangle CNB, \triangle ANB, \triangle ABC$ respectively. First, we show that $\triangle N_aN_bN_c\cup N\sim\triangle O_aO_bO_c\cup O$. Let $M_a, M_b, M_c, A', B', C'$ be midpoints of $BC, CA, AB$, $AP, BP, CP$ respectively. Let $V$ be the Poncelet point of $ABNC$. Notice that $NN_a\perp M_aV$ and $N_bN_c\perp A'V$ thus
+    \begin{align*}
+        \dangle N_bN_aN_c &= \dangle C'VB' = \dangle C'M_aB' = \dangle BNC = \dangle O_cO_aO_b \\
+        \dangle N_bNN_c &= \dangle M_bVM_c = \dangle M_bM_aM_c = \dangle BAC = \dangle O_cOO_b
+    \end{align*}
+    which gives the desired similarity. Now, let $K$ be the Kosnita point of $\triangle ABC$ and $M$ be the midpoint of $ABC$. Let $\triangle P_aP_bP_c$ be the pedal triangle of $N$ w.r.t. $\triangle ABC$, which has the circumenter $M$. We claim that $M$ maps to $N$ under this similarity. To prove that, note that $V\in\odot(P_aP_bP_c)$ (by property of Poncelet point and angle chasing) thus
+    $$\dangle MN_bN_c = \dangle P_bVA' = \dangle P_bM_bA' = \dangle ACN = \dangle O_cO_bN$$
+    which gives $\triangle N_aN_bN_c\cup N\cup M\cup\triangle O_aO_bO_c\cup O\cup N$. In particular, if $X, T$ is the circumcenter of $\triangle N_aN_bN_c$ and $\triangle O_aO_bO_c$, we get that $\measuredangle XNM = -\measuredangle TON = \measuredangle NOT$. It suffices to show that $OT\parallel NK$.
+    \nl To that end, let $\triangle K_aK_bK_c$ be the pedal triangle of $K$ w.r.t. $\triangle ABC$. Notice that $\triangle K_aK_bK_c\cup M\cup K$ and $\triangle O_aO_bO_c\cup T\cup O$ are homothetic hence $OT\parallel MK$ as desired.
+\end{proof}
+\noindent We have proven the last lemma. So we are done.
+\subsection{Marking Scheme}
+\subsubsection{Preliminary remarks}
+\begin{enumerate}
+    \item All complete solutions should be awarded a full 7 points, regardless of whether they fit in the marking scheme or not.
+    \item Any solution (either computational or synthetic) which does not handle configuration issues should get a $1$ point deduction.
+    \item Any computational solution that has minor computational errors should have a $1$ point deduction.
+    \item Partial synthetic solutions should be judged as equivalently as possible.
+    \item Partial solutions using computational techniques should be given partial credit only if there is a synthetic interpretation mentioned in them, which could lead to a complete solution.
+    \item Partial credits across different approaches are \textbf{not} additive. If a student has a partial solution that can be graded via different marking schemes, the one which leads to the highest score should be followed.
+    \item Partial credits within one solution are additive.
+    \item Non-trivial but minor errors in a complete solution usually lead to a deduction of 1 point.
+\end{enumerate}
+\subsubsection{Solution 1 (Navneel Singhal)}
+\begin{enumerate}
+        \marking{1}{Reaching to the point where $N_AN_BN_C$ is considered}
+        \marking{2}{Inversion at $N$ sending the incircle to the bigger tangent circle}
+        \marking{3}{Showing that $NQ$ is parallel to the Euler line}
+        \marking{1}{Handling configuration issues}
+\end{enumerate}
+\subsubsection{Solution 2 (Pitchayut Saengrungkongka and Navneel Singhal)}
+\begin{enumerate}
+        \marking{2}{Considering the points $X_a$ etc}
+        \marking{2}{Showing that $X_aI_1$ is the radical axis of the $E, F$-excircles}
+        \marking{1}{Showing the existence of a homothety between the pentagons (deduct this point if configuration issues are not handled in an essentially complete solution)}
+        \marking{2}{Using the homothety that maps $DEF$ to its medial triangle}
+\end{enumerate}
+\subsubsection{Solution 3 (Pitchayut Saengrungkongka)}
+\begin{enumerate}
+        \marking{2}{Constructing $X, Y, Z$}
+        \marking{5}{Completing the complex bash correctly}
+\end{enumerate}
+\subsubsection{Solution 4 (Francesco Sala and Pitchayut Saengrungkongka)}
+\begin{enumerate}
+        \marking{3}{Showing the first claim}
+        \marking{2}{Showing the second claim}
+        \begin{enumerate}
+                \marking{1}{Showing that $T_a \in \odot(BMC)$}
+        \end{enumerate}
+        \marking{2}{Showing the final lemma}
+\end{enumerate}

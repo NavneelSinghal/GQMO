@@ -1,0 +1,32 @@
+\section{Problem 2}
+\subsection{Problem}
+Geoff has an infinite stock of sweets, which come in $n$ flavours. He arbitrarily distributes some of the sweets amongst $n$ children (a child can get sweets of any subset of all flavours, including the empty set). Call a distribution of sweets $k$\emph{-nice} if every group of $k$ children together has sweets in at least $k$ flavours. Find all subsets $S$ of $\{1,2,\dots,n\}$ such that if a distribution of sweets is $s$-nice for all $s\in S$, then it is $s$-nice for all $s\in \{1,2,\dots,n\}$.\nl
+\textit{Proposed by Kyle Hess, USA}
+
+\subsection{Solutions}
+We claim that $S = \{1, 2, \dots, n\}$ is the only $S$ that satisfies the problem conditions. It is clear that it does. Now we show that this is the only one.\nl
+Consider the obvious translation to the language of bipartite graphs, where one part represents children and the second one represents flavours, and two vertices are connected if and only if the respective child has a sweet of the respective flavour. We show that for each $r \in \{1, 2, \dots, n\}$, there exists a bipartite graph (with two $n$-sized partitions) that is not $r$-nice but is $s$-nice for all $\in\{1,2,\dots,n\}\setminus\{r\}$. Then for every $S\neq \{1,2,\dots,n\}$ our construction for some $r\in \{1,2,\dots,n\}\setminus S$ proves that $S$ doesn't satisfy problem conditions.
+
+\subsubsection{Solution 1 (David Rusch)}
+We take the bipartite graph $\{1,\dots, r\} \times \{1,\dots,r-1\} \cup \{r+1,\dots,n\} \times \{1,\dots,n\}$. Note that the sets are defined to be empty if they don't make sense ($r=1$ or $r=n$). Now, $r$ doesn't work because of $\{1,2,\dots,r\}$, but every other $s$ works obviously. If $s<r$, there are at least $r-1$ neighbors no matter what and if $s>r$, there are $n$ neighbours. 
+
+\subsubsection{Solution 2 (Navneel Singhal)}
+We construct such bipartite graphs by induction. The case for $\{1, 2\}$ is easy to see.\nl
+Now suppose we have such examples for $n$. We wish to exhibit such examples for $n+1$. We break into two cases: $r \ne n+1$ and $r = n+1$.\nl
+Firstly suppose $r \ne n+1$. For this case, join $n+1$ on the left to all vertices on the right, then utilise the construction for the same subset without $n+1$ using the induction hypothesis, for the vertices $1$ to $n$. It's easy to see that this is not $f$ expanding only for $f = r$.\nl
+Now we do the case $r = n+1$. For this case, we do this construction: $k$ on the left is adjacent to all the vertices $i$ on the right such that $i \le k$, and $n+1$ is joined to $\{1, 2, \dots, n\}$. For any subset of the vertices on the left of size $g \le n$, there is at least one vertex whose index is at least $g$, or there is $n+1$ in it, so the size of $R(S)$ is $\ge g$, and thus $|R(S)| \ge |S|$. However since the set of neighbours of all the vertices on the left is of size $n$,
+the graph this construction leads to is not $n+1$-nice.\nl
+This implies, by induction, that for every $n$, there for each $r \in \{1, 2, \dots, n\}$, there exists a bipartite graph (with 2 $n$-sized partitions) that is not $r$-nice but is $s$-nice for all $s \ne r$, $r, s \in \{1, 2, \dots, n\}$.
+
+\subsection{Marking scheme}
+\begin{enumerate}
+        \marking{0}{Only mentioning the correct answer}
+        \marking{1}{Showing that it suffices to prove that for every $r\in\{1,2,\dots,n\}$ there is a distribution that is not $r$-nice but is $s$-nice for all $s\in\{1,2,\dots,n\}\setminus\{r\}$ to solve the problem}
+        \marking{6}{For every $r\in\{1,2,\dots,n\}$, constructing a distribution that is that is not $r$-nice but is $s$-nice for all $s\in\{1,2,\dots,n\}\setminus\{r\}$}
+        \begin{enumerate}
+                \marking{1}{constructing such a distribution for some particular value of $r$}
+        \end{enumerate}
+        \marking{-0}{Claiming that a construction works without proving it (when it is indeed easy to see)}
+\end{enumerate}
+
+

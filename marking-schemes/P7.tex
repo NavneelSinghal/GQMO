@@ -1,0 +1,62 @@
+\section{Problem 7}
+
+\subsection{Problem}
+Each integer in ${1, 2, 3, \ldots, 2020}$ is coloured in such a way that, for all positive integers $a$ and $b$ such that $a+b \leq 2020$, the numbers $a$, $b$ and $a+b$ are not coloured with three different colours. Determine the maximum number of colours that can be used. \nl
+\textit{Proposed by Massimiliano Foschi, Italy}
+
+\subsection{Solutions}
+\textbf{Answer.} In general, when the set is substituted by $\{1, 2, \ldots, n\}$, the answer is $\lfloor \log_2 n \rfloor +1$. In this case, the answer is $11$.
+\subsubsection{Example}
+A colouring which uses $\lfloor \log_2 n \rfloor+1$ is as follows: colour with the $i$-th colour all the numbers $m$ with $v_2(m)=i-1$. As the maximum value $v_2(m)$ attains is $\lfloor \log_2 n \rfloor$, this colouring uses exactly $\lfloor \log_2 n \rfloor+1$ colours. Note that, among $a$, $b$ and $a+b$, at least two have the same $2$-adic evaluation.
+\subsubsection{Bound}
+Let $k(n)$ be the maximum number of colours.\nl
+\textbf{Approach 1 (Massimiliano Foschi)}\nl
+We prove the following \emph{lemma}: if $\{1, 2, \ldots, n\}$ cannot be coloured with more than $x$ colours, then neither $\{1, 2, \ldots, 2n\}$ nor $\{1, 2, \ldots, 2n+1\}$ can be coloured with more than $x+1$ colours.
+\nl
+By the inductive hypothesis, the numbers in $\{2, 4, 6, \ldots, 2n\}$ are coloured with at most $x$ colours, as they are simply the doubles of those in $\{1, 2, \ldots, n\}$. If the set were coloured with $x+2$ colours or more, then there would be two odd numbers $d_1<d_2$ in that set such that they are coloured differently and no even number is coloured with one of their colours. This yields to a contradiction by taking $a=d_1$ and $b=d_2-d_1$.
+\nl
+Note that, if $n=x_mx_{m-1}\ldots x_0$ when written in binary, then $m=\lfloor \log_2 n \rfloor$. Now observe that $$k(n)=k(x_m\ldots x_1x_0) \leq k(x_m\ldots x_1)+1 \leq k(x_m \ldots x_2)+2 \leq \ldots \leq m+1$$
+\nl
+\textbf{Approach 2 (Massimiliano Foschi)}
+\nl
+The lemma used in the solution in approach 1 can be proven in the following way:
+\nl
+note that if there are at least $2$ colours present in $\{n+1, \ldots, 2n\}$ (or $\{n+1, \ldots, 2n+1\}$ which are not present in $\{1, 2, \ldots, n\}$, then, by taking two numbers coloured with these two colours, their difference (which is $\leq n$) is coloured with a different colour, contradiction.
+\nl
+Thus $k(2n) \leq k(n)+1$ and $k(2n+1) \leq k(n)+1$.
+\nl
+\textbf{Approach 3 (Pitchayut Saengrungkongka)}
+\nl
+Let $a_1<a_2<...<a_s$ be the smallest number of each color.
+\nl
+\textbf{Claim.} $a_i \geq 2a_{i-1}$ for each $i$.
+\nl
+\textit{Proof.} By minimality, $a_i$ and $a_{i+1}-a_i$ both cannot have the same color as $a_{i+1}$, thus, they must have the same color. This is the contradiction if $a_{i+1}-a_i<a_i$.
+\nl
+Therefore $a_s \geq 2^{s-1}$, hence $s \leq \lfloor \log_2 n \rfloor +1$.
+\subsection{Marking scheme}
+\textbf{3 points} will be given for the example (and the lower bound) and \textbf{4 points} will be given for the upper bound. Marks from different sections of the markscheme are additive, marks from the same section aren't. This markscheme is designed to be as general as possible, therefore if a partial solution does not follow the lines of one of these approaches, it is likely to be nevertheless rewarded appropriately.
+\nl
+If a corrector believes this is not the case for a particular solutions, they are recommended to debate it.
+\subsubsection{Example}
+\textbf{Note.} Throughout this part of the markscheme, for the example in this paper, the fact that it uses exactly 11 colours will be considered trivial.
+\begin{enumerate}
+        \marking{1}{Claiming that, $k(2020)=\lfloor \log_2 2020 \rfloor +1$ or, equivalently, $k(2020)=11$.}
+        \marking{1}{Providing a valid example.}
+        \marking{2}{Providing a valid example and proving that it uses $11$ colours (or this fact is trivial).}
+        \marking{2}{Providing a valid example and proving that it is valid (if the student has used the example in this paper, this can be done simply by citing the fact that $v_2(a)$, $v_2(b)$ and $v_2(a+b)$ are not all different as well-known.}
+        \marking{3}{The student satisfies both criteria for 2 points.}
+\end{enumerate}
+\subsubsection{Upper bound}
+\begin{enumerate}
+        \marking{1}{Proving that $k(2n) \leq k(n)+1$.}
+        \marking{3}{Proving that $k(2n+1) \leq k(n)+1$.}
+        \marking{3}{Proving that, using the notation in approach 3, $a_i \geq 2a_{i-1}$.}
+        \marking{3}{In general, proving a claim which easily yields the solution.}
+        \marking{4}{Proving that $k(2020) \leq 11$.}
+\end{enumerate}
+\subsubsection{Deductions}
+\begin{enumerate}
+        \marking{-1}{The student miscalculates the answer.}
+        \marking{-0}{The student miscalculates the answer but understands that it is $\lfloor \log_2 2020 \rfloor +1$.}
+\end{enumerate}
